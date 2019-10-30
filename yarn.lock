@@ -104,6 +104,13 @@
   resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-4.1.2.tgz#528ba392658055dba78fc3be906ca338a1a2d1c5"
   integrity sha512-ve2IoUJClE+4S/sG2zoLGEHP6DCvqgyz7UkHZdiICdQaAYRaCXsRWfJlbL8B0KvUyo9lgzD+oR0YSy4YikFyFQ==
 
+"@vue/composition-api@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-0.3.2.tgz#2d797028e489bf7812f08c7bb33ffd03ef23c617"
+  integrity sha512-fD4dn9cJX62QSP2TMFLXCOQOa+Bu2o7kWDjrU/FNLkNqPPcCKBLxCH/Lc+gNCRBKdEUGyI3arjAw7j0Yz1hnvw==
+  dependencies:
+    tslib "^1.9.3"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -5346,7 +5353,7 @@ tslib@1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
   integrity sha512-f/qGG2tUkrISBlQZEjEqoZ3B2+npJjIf04H1wuAv9iA8i04Icp+61KRXxFdha22670NJopsZCIjhC3SnjPRKrQ==
 
-tslib@^1.9.0:
+tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
@@ -5641,7 +5648,7 @@ vue-template-es2015-compiler@^1.6.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.5.3:
+vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==

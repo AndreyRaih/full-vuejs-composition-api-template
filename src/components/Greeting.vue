@@ -3,9 +3,9 @@
     <div :class="$style.greeting">
       <h1>{{greetingStr}}</h1>
     </div>
-    <div :class="$style.visits">It's your {{count}} visit</div>
+    <div :class="$style.visits">It's your {{state.count}} visit</div>
     <div :class="$style.users">
-      {{usersStr}}
+      {{usersCountStr}}
       <div>
         <a :class="$style.link" @click="changeUserNameInGetter()">Change user name</a>
       </div>
@@ -39,28 +39,42 @@
 </style>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from 'vue-class-component';
-import { State, Action, Getter } from "vuex-class";
-import users from '../store/modules/users'
-const namespace: string = "users";
+import { reactive, computed, watch, createComponent, SetupContext } from "@vue/composition-api";
 
-// Vue decorator
-@Component({
+interface IGreetingState {
+  firstName: string,
+  lastName: string,
+  count: number
+}
+
+interface IGreetingProps {
+  count: number
+}
+
+export default createComponent({
   props: {
     count: {
       default: 0
     }
+  },
+  setup(props: IGreetingProps, ctx: SetupContext) {
+    const store = ctx.root.$store;
+    const state = reactive({
+      firstName: store.state.firstName,
+      lastName: store.state.firstName,
+      count: props.count
+    } as IGreetingState);
+    const usersCountStr = computed(() => store.getters['users/usersCountStr'])
+    const greetingStr = computed(() => `Hello, ${state.firstName} ${state.lastName}!`)
+    const changeUserNameInGetter = () => {
+      store.dispatch('users/changeUserNameInGetter')
+    }
+    return {
+      state,
+      changeUserNameInGetter,
+      greetingStr,
+      usersCountStr
+    }
   }
-})
-export default class HelloView extends Vue {
-  // Vuex decorators
-  @State('firstName') firstName: any;
-  @State('lastName') lastName: any;
-  @Getter('usersCountStr', { namespace }) usersStr: string;
-  @Action('changeUserNameInGetter', { namespace }) changeUserNameInGetter: any
-  get greetingStr(): string {
-    return `Hello, ${this.firstName} ${this.lastName}!`
-  }
-}
+});
 </script>

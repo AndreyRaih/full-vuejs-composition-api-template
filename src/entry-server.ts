@@ -25,15 +25,33 @@ export default (context: any) => {
     router.push(url)
     // wait until router has resolved possible async hooks
     router.onReady(() => {
+      /* 
+
+        THIS BLOCK COMMENTED, BECOUSE IN VUE COMPOSITION API NOT SUPPORTED PREFETCH HOOKS, COMING SOON
+
+        const matchedComponents = router.getMatchedComponents()
+        if (!matchedComponents.length) {
+          return reject({ code: 404 })
+        }
+        // Call asyncData hooks on components matched by the route.
+        // A asyncData hook dispatches a store action and returns a Promise,
+        // which is resolved when the action is complete and store state has been
+        // updated.
+        Promise.all(matchedComponents.map((component: any) => component.options && component.options.asyncData ? component.options.asyncData({
+          store,
+          route: router.currentRoute
+        }) : null)).then(() => {
+          isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
+          // Inject finally state
+          context.state = store.state;
+          resolve(app)
+        }).catch(reject);
+      */
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
         return reject({ code: 404 })
       }
-      // Call asyncData hooks on components matched by the route.
-      // A asyncData hook dispatches a store action and returns a Promise,
-      // which is resolved when the action is complete and store state has been
-      // updated.
-      Promise.all(matchedComponents.map((component: any) => component.options.asyncData ? component.options.asyncData({
+      Promise.all(matchedComponents.map((component: any) => component && component.asyncData ? component.asyncData({
         store,
         route: router.currentRoute
       }) : null)).then(() => {

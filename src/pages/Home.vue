@@ -1,8 +1,8 @@
 <template>
   <div :class="$style.home">
     <img alt="Vue logo" src="../public/logo.png">
-    <Greeting :count="visitCounter" />
-    <a :class="$style.link" @click="$router.push('about')">Go to About page</a>
+    <Greeting :count="state.visitCounter" />
+    <a :class="$style.link" @click="$router.push('compositionApi')">Go to Composition API page</a>
   </div>
 </template>
 
@@ -31,32 +31,37 @@
 </style>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { createComponent, onBeforeMount, reactive, SetupContext } from '@vue/composition-api';
+import { AsyncDataContext } from '*.vue';
 
-@Component({
+export default createComponent({
   title: 'Home Page App',
-  async asyncData ({ store }) {
-    // This code run only at server
-    await store.dispatch('users/fetchData');
+  name: 'Home',
+  async asyncData (ctx: AsyncDataContext) {
+    await ctx.store.dispatch('users/fetchData');
   },
   components: {
     Greeting: () => import('../components/Greeting.vue')
-  }
-})
-export default class Home extends Vue {
-  visitCounter: number | null = null;
-  updateVisitData () {
-    if (localStorage.getItem('visit')) {
-      const savedValue = localStorage.getItem('visit');
-      this.visitCounter = savedValue ? parseInt(savedValue) : 0;
+  },
+  setup (props: any, ctx: SetupContext) {
+    const state = reactive({
+      visitCounter: null
+    })
+    onBeforeMount (() => {
+      state.visitCounter = getVisitData();
+      updateVisitData(state.visitCounter);
+    })
+    function getVisitData () {
+      const savedValue = localStorage ? localStorage.getItem('visit') : null;
+      return savedValue ? parseInt(savedValue) : 0;
     }
-    const visit = this.visitCounter + 1;
-    localStorage.setItem('visit', visit.toString());
+    function updateVisitData (count: number) {
+      const visit = count + 1;
+      localStorage.setItem('visit', visit.toString());
+    }
+    return {
+      state
+    }
   }
-  mounted () {
-    // This code run only at client
-    this.updateVisitData();
-  }
-};
+});
 </script>

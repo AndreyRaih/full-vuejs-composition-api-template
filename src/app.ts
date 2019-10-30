@@ -3,8 +3,11 @@ import App from './App.vue'
 import { createStore } from './store'
 import { createRouter } from './router'
 import { sync } from 'vuex-router-sync'
+import VueCompositionApi from '@vue/composition-api';
+
+Vue.use(VueCompositionApi);
+
 import titleMixin from './util/title'
-import './util/class-components-augumentation'
 // mixin for handling title
 Vue.mixin(titleMixin)
 

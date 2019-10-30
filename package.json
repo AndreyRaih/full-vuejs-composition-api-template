@@ -12,6 +12,7 @@
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules"
   },
   "dependencies": {
+    "@vue/composition-api": "^0.3.2",
     "axios": "^0.19.0",
     "compression": "^1.7.1",
     "cross-env": "^5.1.1",
@@ -24,7 +25,7 @@
     "nuxt-property-decorator": "^2.3.0",
     "route-cache": "0.4.3",
     "serve-favicon": "^2.4.5",
-    "vue": "^2.5.3",
+    "vue": "^2.6.10",
     "vue-property-decorator": "^8.2.2",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.3",
