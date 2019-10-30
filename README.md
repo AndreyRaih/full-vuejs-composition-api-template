@@ -1,10 +1,11 @@
-# VueJS + Vuex + SSR + CSS/Stylus Modules + TypeScript template
+# Full VueJS template with Vue Composition Api
 
-Base template and some ideas of realisation HMR in SSR & TypeScript enviroment: https://github.com/kevguy/vue-hackernews-2.0-typescript
-Thank you!
+This template received base realization from this project: https://github.com/AndreyRaih/simple-vue-ssr-ts-template
 
-Some time ago, I need to make app with VueJS support, with SSR realization and TypeScript intagration.
-Everything I found was not convenient enough for development, though it had all solutions for production.
+But I added several examples, which were appropriate for the base template.
+In this repo, you can see the main ideas of a new approach to organization Vue components with last updates of Vue Composition API, and new options from types definition, without decorators.
+
+More information about Vue Composition API RFC: https://vue-composition-api-rfc.netlify.com
 
 So, I decided to create this boilerplate from developers to developers.
 I hope that it will be helpful for somebody.
@@ -15,6 +16,11 @@ It includes:
 
 It helps to user to receive content faster. Also, it improves SEO.
 You can read official docs, if you need use SSR: https://ssr.vuejs.org/
+
+### SSR Prefetch Data with asyncData 
+
+The template has augmentation asyncData for preload data before sending a view to the client.
+ATTENTION: asyncData is not lifecycle hook 
 
 ### Extented vue-property-decorators with asyncData hooks, title and etc
 
@@ -62,7 +68,7 @@ State management pattern. Represents centralized store for all the components in
 
 More: https://vuex.vuejs.org
 
-### CSS modules
+### CSS/Stylus modules
 
 System for modularizing and composing CSS. You can use it as:
 ```html
